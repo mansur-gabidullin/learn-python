@@ -14,8 +14,8 @@
 first_list = input('Введите элементы 1-го списка: ').split(',')
 second_list = input('Введите элементы 2-го списка: ').split(',')
 
-for n in second_list:
-    if n in first_list:
+for n in first_list.copy():
+    if n in second_list:
         first_list.remove(n)
 
 print(','.join(first_list))
