@@ -129,12 +129,15 @@ def generate_actions(refill_handler, purchase_handler, history_handler):
     )
 
 
-def select_action(actions, question):
+def action_selector(actions, question):
     menu_items = (action[0] for action in actions)
     print_menu(menu_items)
     print()
-    choice = input(question)
-    return actions[int(choice) - 1]
+    choice = int(input(question))
+    actions_count = len(actions)
+
+    if 0 < choice < actions_count:
+        return actions[choice - 1]
 
 
 def amount_getter(logger):
@@ -143,6 +146,7 @@ def amount_getter(logger):
 
 def terminal(
         actions,
+        select_action,
         escape_handler,
         logger,
         get_remaining_amount,
@@ -166,4 +170,4 @@ def terminal(
             running = False
 
 
-terminal(generate_actions(refill, purchase, history), escape, log, amount_getter)
+terminal(generate_actions(refill, purchase, history), action_selector, escape, log, amount_getter)
