@@ -136,7 +136,7 @@ def action_selector(actions, question):
     choice = int(input(question))
     actions_count = len(actions)
 
-    if 0 < choice < actions_count:
+    if 0 < choice <= actions_count:
         return actions[choice - 1]
 
 
